@@ -22,7 +22,7 @@ function dare(A,B,Q,R,S=0)
 	(d,v) = eig(L,M)
 	
 	# Sort the eigenvalues
-	ew = abs(d)
+	ew = abs.(d)
 	pos = sortperm(ew)
 
 	# Compute X

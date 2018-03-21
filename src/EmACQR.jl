@@ -1,6 +1,6 @@
 __precompile__()
 
-module emACQR
+module EmACQR
 
 type ACQR
 	A

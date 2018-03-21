@@ -39,8 +39,8 @@ function ACQRS_sub(y,n::Int,i::Int)
 	
 	# Matrices gam and gam1
 	# --------------------------------------------------
-	gam  = U1*diagm(sqrt(S1))
-	gam1 = U1[1:m*(i-1),:]*diagm(sqrt(S1))
+	gam  = U1*diagm(sqrt.(S1))
+	gam1 = U1[1:m*(i-1),:]*diagm(sqrt.(S1))
 	# and pseudo-inverses
 	gam_inv  = pinv(gam)
 	gam1_inv = pinv(gam1)

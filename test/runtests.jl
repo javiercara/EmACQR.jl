@@ -1,6 +1,6 @@
 # to run tests, type in Julia: Pkg.test("emACQR")
 
-using emACQR
+using EmACQR
 using Base.Test
 
 include("byrow_test.jl")
