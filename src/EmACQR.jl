@@ -24,17 +24,17 @@ include("ACQR_ksmoother_s.jl")
 include("ACQR_em.jl")
 include("ACQR_em_s.jl")
 include("ACQRS_sub.jl")
-include("simula.jl")
+include("ACQR_simula.jl")
 include("ACQR_em1.jl")
 include("ACQR_em_s1.jl")
 
-export 
+export
 	byrow, dare, dlyap,
 	ACQR_kfilter, ACQR_kfilter_s,
 	ACQR_ksmoother, ACQR_ksmoother_s,
 	ACQR_em, ACQR_em_s,
 	ACQRS_sub,
-	simula,
+	ACQR_simula,
 	ACQR, ACQR_em1, ACQR_em_s1
 
 end # module

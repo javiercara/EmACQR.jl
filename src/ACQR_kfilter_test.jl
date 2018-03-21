@@ -1,7 +1,5 @@
 nt = 1000
-no = 2
-ni = 1
-m = simula(nt,no,ni)
+m = ACQR_simula(nt)
 
 y = m["y"]
 A = m["A"]

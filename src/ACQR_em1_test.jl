@@ -1,7 +1,5 @@
 nt = 1000
-no = 2
-ni = 1
-m = simula(nt,no,ni)
+m = ACQR_simula(nt)
 
 y = m["y"]
 nx = 4
@@ -13,4 +11,3 @@ mest1 = ACQR_em_s1(y,nx,max_iter=10,txo=false)
 @test sum(mest.A.^2) > 1e-6
 @test sum(mest1.A.^2) > 1e-6
 println("OK")
-

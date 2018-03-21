@@ -3,13 +3,13 @@
 using EmACQR
 using Base.Test
 
-include("byrow_test.jl")
-include("dare_test.jl")
-include("dlyap_test.jl")
-include("simula_test.jl")
-# 
-include("ACQRS_sub_test.jl")
-# 
-include("ACQR_kfilter_test.jl")
-include("ACQR_em_test.jl")
-include("ACQR_em1_test.jl")
+include("../src/byrow_test.jl")
+include("../src/dare_test.jl")
+include("../src/dlyap_test.jl")
+include("../src/ACQR_simula_test.jl")
+#
+include("../src/ACQRS_sub_test.jl")
+#
+include("../src/ACQR_kfilter_test.jl")
+include("../src/ACQR_em_test.jl")
+include("../src/ACQR_em1_test.jl")

@@ -1,7 +1,5 @@
 nt = 1000
-no = 2
-ni = 1
-m = simula(nt,no,ni)
+m = ACQR_simula(nt)
 
 y = m["y"]
 
@@ -29,4 +27,3 @@ print("Testing ACQR_em_s: ")
 A,C,Q,R,m1,P1,loglik,aic = ACQR_em_s(y,Ai,Ci,Qi,Ri,m1i,max_iter,tol,txo)
 @test sum(A.^2) > 1e-6
 println("OK")
-
