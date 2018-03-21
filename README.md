@@ -5,6 +5,7 @@
 `EmACQR.jl` is a Julia package to estimate the ACQR state space model, that is:
 
 x_{t+1} = Ax_{t} + w_{t}
+
 y_{t}   = Cx_{t} + v_{t}
 
 where w_{t} -> N(0,Q), v_{t} -> N(0,R)
