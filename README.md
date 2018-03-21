@@ -1,6 +1,8 @@
-# EmACQR
+# EmACQR.jl
 
-`EmACQR.jl` is a Julia package to estimate the state space model
+[![Travis](https://travis-ci.org/javiercara/EmACQR.jl.svg?branch=master)](https://travis-ci.org/javiercara/EmACQR.jl.svg?branch=master)
+
+`EmACQR.jl` is a Julia package to estimate the ACQR state space model, that is:
 
 x_{t+1} = Ax_{t} + w_{t}
 y_{t}   = Cx_{t} + v_{t}
