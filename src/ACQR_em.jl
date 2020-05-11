@@ -37,7 +37,7 @@ function ACQR_em(y,Ai,Ci,Qi,Ri,m1i,P1i,max_iter::Int,tol::Float64,txo::Bool)
 	tol1 = 1.0
 	iter = 1
 	while (iter <= max_iter) && (tol1 > tol)
-		tic()
+		time1 = time()
 	
 		# E-step
 		# ---------------------------------------------------------------------------------
@@ -87,9 +87,9 @@ function ACQR_em(y,Ai,Ci,Qi,Ri,m1i,P1i,max_iter::Int,tol::Float64,txo::Bool)
 		R = 1/nt*R
 		R = (R + R')/2 # to make sure it's a symmetric matrix
 		    
-		etime = toq()
+		etime = time() - time1
 		if txo
-			println( "Iter " * @sprintf("%3d",iter) * ",   @time = " * @sprintf("%5.2f",etime) * ",   logLik = " * @sprintf("%.6E",loglik) * ",   tol = ", @sprintf("%.2E",tol1) )
+			println( "Iter " * @sprintf("%3d",iter) * ",   @time = " * @sprintf("%.2E",etime) * ",   logLik = " * @sprintf("%.6E",loglik) * ",   tol = ", @sprintf("%.2E",tol1) )
 		end
 		
 		iter += 1

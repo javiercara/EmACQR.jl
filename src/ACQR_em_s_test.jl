@@ -12,10 +12,10 @@ P1i = 0*Ai
 
 #######################
 max_iter=10
-tol=1e-6
+tol=1e-10
 txo=false
-print("Testing ACQR_em: ")
-A,C,Q,R,m1,P1,loglik,aic = ACQR_em(y,Ai,Ci,Qi,Ri,m1i,P1i,max_iter,tol,txo)
+print("Testing ACQR_em_s: ")
+A,C,Q,R,m1,P1,loglik,aic = ACQR_em_s(y,Ai,Ci,Qi,Ri,m1i,max_iter,tol,txo)
 if sum(A.^2) > 1e-6
     println("OK")
 end

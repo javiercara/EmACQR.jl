@@ -1,83 +1,32 @@
-function ACQR_simula(nt::Int)
+function ACQR_simula(nt::Int, seed::Int)
 	#
 	# simulated model to test the functions
 	#
 	# nt: number of time instants
+	# seed: seed for the random numbers
 
-	# random seed for the simulations
-	srand(99)
+	# random seed
+	# ------------------------------
+	Random.seed!(seed)
 
-	# simulated mechanical system
-	#
-	# |    k1    ------     k2    ------
-	# |---###---|  m1  |---###---|  m2  |
-	# |    c1    ------     c2    ------
-	# |           @  @             @  @
-	# |========================================
+	# simulated system
+	# ----------------------------
+	m = simula01()
 
 	# vibration parameters
 	# ----------------------------
-	# nyquist frequency (Hz)
-	fnq = 8
-	# sampling frequency (Hz)
-	fs = 2*fnq
 	# time interval (s)
-	dt = 1/fs
+	dt = m["dt"]
 
-	# matrices for the mechanical system
-	# ----------------------------------------
-	# mass matrix
-	m1 = 35
-	m2 = 17.5
-	M = [m1 0;0 m2]
-	Minv = [1/m1 0;0 1/m2] # inv(M)
-
-	# stiffness matrix
-	k1 = 8750
-	k2 = 3500
-	K = [k1+k2 -k2;-k2 k2]
-	# theoretical natural frecuencies: 1.71 Hz, 3.31 Hz
-
-	# eigenvalues and eigenectors
-	D,V = eig(K,M)
-
-	# modal matrices
-	Mm = V'*M*V
-	Km = V'*K*V
-
-	# damping ratios
-	zm = [0.02 0.02]
-
-	# modal damping matrix
-	Gm = zeros(2,2)
-	for i in 1:2
-		Gm[i,i] = 2*sqrt(Mm[i,i]*Km[i,i])*zm[i]
-	end
-
-	# damping matrix
-	G = (V')\Gm/V
-
-	# matrices for the discrete state space model
-	# --------------------------------------------------------------
-	# Matrix A
-	Ac = [zeros(2,2) eye(2);-Minv*K -Minv*G] # Continuous Matrix A
-	A = expm(Ac*dt) # discrete Matrix A
-
-	# Matrix C (continuous = discrete)
-	C = [-Minv*K -Minv*G]
-
-	# Matrix B
-	# Js is the input location matrix
-	J = eye(2)
-	Bc = [zeros(2,2);Minv*J] # continuous matrix B
-	B = (A-eye(4,4))*inv(Ac)*Bc # discrete matrix B
-
-	# matrix D (continuous = discrete)
-	D = Minv*J
+	# state-space matrices
+	# --------------------------------------
+	A = m["A"]
+	B = m["B"]
+	C = m["C"]
+	D = m["D"]
 
 	# input definition
 	# ---------------------------------------
-	# system input u_{t} = a_{t} + a_{t-1} (MA1)
 	u = 100*randn(2,nt) # if 100 is not used, Q and R are too small
 
 	# state equation, no noise
@@ -99,6 +48,15 @@ function ACQR_simula(nt::Int)
 	R = cov(v')
 	S = cov(w',v')
 
-	return Dict("y"=>y,"u"=>u,"A"=>A,"B"=>B,"C"=>C,"D"=>D,"Q"=>Q,"R"=>R,"S"=>S)
+	# starting values
+	m1 = C\y[:,1:1]
+	P1 = 0*A
 
+	m = Dict("dt"=>dt,
+	"y"=>y,"u"=>u,
+	"A"=>A,"B"=>B,"C"=>C,"D"=>D,
+	"Q"=>Q,"R"=>R,"S"=>S,
+	"m1"=>m1,"P1"=>P1)
+
+	return m
 end

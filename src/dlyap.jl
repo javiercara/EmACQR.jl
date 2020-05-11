@@ -7,7 +7,7 @@ function dlyap(A,Q)
 	# => A*X - X*(A')^(-1) + Q*(A')^(-1) = 0 
 	# => A*X*A' - X + Q = 0  -> Discrete Lyapunov equation
 
-	Atinv = inv(A')
+	Atinv = Array{Float64,2}(inv(A'))
 	B = -Atinv
 	C = Q*Atinv
 	X = sylvester(A, B, C)

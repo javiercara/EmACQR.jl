@@ -15,11 +15,11 @@ function dare(A,B,Q,R,S=0)
 		S = zeros(n,m)
 	end
 
-	L = [A zeros(n,n) B;Q -eye(n) S;S' zeros(m,n) R]
-	M = [eye(n) zeros(n,n) zeros(n,m); zeros(n,n) -A' zeros(n,m);zeros(m,n) -B' zeros(m,m)]
+	L = [A zeros(n,n) B;Q -Matrix(I, n, n) S;S' zeros(m,n) R]
+	M = [Matrix(I, n, n) zeros(n,n) zeros(n,m); zeros(n,n) -A' zeros(n,m);zeros(m,n) -B' zeros(m,m)]
 
 	# Compute the eigenvalue decomposition
-	(d,v) = eig(L,M)
+	(d,v) = eigen(L,M)
 	
 	# Sort the eigenvalues
 	ew = abs.(d)

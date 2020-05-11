@@ -27,20 +27,20 @@ function ACQRS_sub(y,n::Int,i::Int)
 	
 	# LQ factorization 
 	# --------------------------------------------------
-	F = qrfact(Y')
-	L = F[:R]'
+	F = qr(Y')
+	L = F.R'
 	L21 = L[m*i+1:2*m*i,1:m*i]
 	
 	# singular values
 	# --------------------------------------------------
-	F = svdfact(L21)
-	U1 = F[:U][:,1:n]
-	S1 = F[:S][1:n]
+	F = svd(L21)
+	U1 = F.U[:,1:n]
+	S1 = F.S[1:n]
 	
 	# Matrices gam and gam1
 	# --------------------------------------------------
-	gam  = U1*diagm(sqrt.(S1))
-	gam1 = U1[1:m*(i-1),:]*diagm(sqrt.(S1))
+	gam  = U1*Matrix( Diagonal(sqrt.(S1)))
+	gam1 = U1[1:m*(i-1),:]*Matrix( Diagonal(sqrt.(S1)))
 	# and pseudo-inverses
 	gam_inv  = pinv(gam)
 	gam1_inv = pinv(gam1)

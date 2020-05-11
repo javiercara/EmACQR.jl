@@ -33,12 +33,12 @@ function ACQR_kfilter(y,A,C,Q,R,x10,P10)
 		St[:,:,t] = C*Ptt1[:,:,t]*C' + R # et variance
 	
 		# Kalman gain
-		Stinv = eye(ny,ny)/St[:,:,t] # numerically preferible to Stinv=inv(St)
+		Stinv = inv(St[:,:,t])
 		Kt[:,:,t] = Ptt1[:,:,t]*C'*Stinv # kalman gain
 		
 		# filtered values
 		xtt[:,t] = xtt1[:,t] + Kt[:,:,t]*et[:,t]
-		Ptt[:,:,t] = (eye(nx) - Kt[:,:,t]*C)*Ptt1[:,:,t]
+		Ptt[:,:,t] = (Matrix(1.0I,nx, nx) - Kt[:,:,t]*C)*Ptt1[:,:,t]
 		
 		# one-step ahead prediction
 		xtt1[:,t+1] = A*xtt[:,t]
