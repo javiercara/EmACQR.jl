@@ -17,7 +17,7 @@ where w_{t} -> N(0,Q), v_{t} -> N(0,R)
 To install the package, from within Julia do
 
 ~~~
-julia> Pkg.clone("git@github.com:javiercara/EmACQR.jl.git")
+julia> using Pkg; Pkg.add(PackageSpec(url="https://github.com/javiercara/EmACQR.jl", rev="master"))
 ~~~
 
 ## Author
