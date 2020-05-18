@@ -1,7 +1,7 @@
 name = "EmACQR"
 uuid = "2d6fd49b-bcf8-4fc6-9d4b-bc59d68ccdb2"
 authors = ["javiercara <javier.cara@upm.es>"]
-version = "0.1.0"
+version = "0.2.0"
 
 [deps]
 LinearAlgebra = "37e2e46d-f89d-539d-b4ee-838fcccc9c8e"
